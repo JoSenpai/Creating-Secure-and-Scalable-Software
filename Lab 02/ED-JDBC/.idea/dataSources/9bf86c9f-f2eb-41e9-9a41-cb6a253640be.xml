@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="jdbc:derby://localhost/sun-appserv-samples">
+  <database-model serializer="dbm" dbms="DERBY" family-id="DERBY" format-version="4.16">
+    <root id="1">
+      <ServerVersion>10.10.2.0</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="APP">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="NULLID"/>
+    <schema id="4" parent="1" name="SQLJ"/>
+    <schema id="5" parent="1" name="SYS"/>
+    <schema id="6" parent="1" name="SYSCAT"/>
+    <schema id="7" parent="1" name="SYSCS_DIAG"/>
+    <schema id="8" parent="1" name="SYSCS_UTIL"/>
+    <schema id="9" parent="1" name="SYSFUN"/>
+    <schema id="10" parent="1" name="SYSIBM"/>
+    <schema id="11" parent="1" name="SYSPROC"/>
+    <schema id="12" parent="1" name="SYSSTAT"/>
+    <table id="13" parent="2" name="MYUSER"/>
+    <column id="14" parent="13" name="USERID">
+      <Position>1</Position>
+      <DataType>CHAR(6)|1s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="13" name="NAME">
+      <Position>2</Position>
+      <DataType>CHAR(30)|1s</DataType>
+    </column>
+    <column id="16" parent="13" name="PASSWORD">
+      <Position>3</Position>
+      <DataType>CHAR(6)|1s</DataType>
+    </column>
+    <column id="17" parent="13" name="EMAIL">
+      <Position>4</Position>
+      <DataType>CHAR(30)|1s</DataType>
+    </column>
+    <column id="18" parent="13" name="PHONE">
+      <Position>5</Position>
+      <DataType>CHAR(10)|1s</DataType>
+    </column>
+    <column id="19" parent="13" name="ADDRESS">
+      <Position>6</Position>
+      <DataType>CHAR(60)|1s</DataType>
+    </column>
+    <column id="20" parent="13" name="SECQN">
+      <Position>7</Position>
+      <DataType>CHAR(60)|1s</DataType>
+    </column>
+    <column id="21" parent="13" name="SECANS">
+      <Position>8</Position>
+      <DataType>CHAR(60)|1s</DataType>
+    </column>
+    <index id="22" parent="13" name="SQL200304201054300">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>USERID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="23" parent="13" name="PK_CUSTOMER">
+      <ColNames>USERID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
