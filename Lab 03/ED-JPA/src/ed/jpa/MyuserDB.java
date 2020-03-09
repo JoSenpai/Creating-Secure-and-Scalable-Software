@@ -69,11 +69,13 @@ public class MyuserDB {
         em.getTransaction().begin();
         Myuser user = em.find(Myuser.class, userId);
         em.getTransaction().commit();
-        MyuserDTO myuserDTO = new MyuserDTO(user.getUserid(), user.getName(), user.getPassword(), user.getEmail(), user.getPhone(), user.getAddress(), user.getSecans(), user.getSecqn());
+        MyuserDTO myuserDTO = new MyuserDTO(user.getUserid(), user.getName(), 
+                user.getPassword(), user.getEmail(), user.getPhone(), 
+                user.getAddress(), user.getSecans(), user.getSecqn());
         return myuserDTO;
         
     }
-
+    
     public boolean updateRecord(MyuserDTO myuserDTO) {
         MyuserDTO foundUser = getRecord(myuserDTO.getUserid());
         if (foundUser == null) {

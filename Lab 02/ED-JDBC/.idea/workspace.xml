@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="00c88103-85a2-4fe6-8e8d-2c15fe518171" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ED-JDBC/ed/jdbc/SetUpUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ED-JDBC/ed/jdbc/SetUpUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ed/jdbc/MyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ed/jdbc/MyDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ed/jdbc/SetUpUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ed/jdbc/SetUpUser.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +128,7 @@
       <workItem from="1583309825424" duration="10481000" />
       <workItem from="1583571296380" duration="767000" />
       <workItem from="1583625330930" duration="344000" />
-      <workItem from="1583734643097" duration="3957000" />
+      <workItem from="1583734643097" duration="5866000" />
     </task>
     <servers />
   </component>

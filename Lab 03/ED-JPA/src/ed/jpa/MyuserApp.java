@@ -1,5 +1,7 @@
 package ed.jpa;
 
+import java.util.Scanner;
+
 public class MyuserApp {
 
     private MyuserDB mydb;
@@ -8,20 +10,104 @@ public class MyuserApp {
     }
     public static void main(String[] args) {
         MyuserApp client = new MyuserApp();
-//        // assuming inputs from keyboard or any GUI
-//        MyuserDTO myuserDTO = new MyuserDTO("000001", "Peter Smith", "123456",
-//                "psmith@swin.edu.au", "9876543210", "Swinburne EN510f",
-//                "What is my name?", "Peter");
-//        boolean result = client.createRecord(myuserDTO);
-//        client.showCreateResult(result, myuserDTO);
-//        // assuming inputs from keyboard or any GUI
-        MyuserDTO myuserDTO2 = new MyuserDTO("000006", "Test", "1000",
-                "100080646@swin.edu.au", "0123456789", "Swinburne EN510g",
-                "What is my name?", "David");
-        boolean result = client.updateRecord(myuserDTO2);
-        client.deleteRecord("000007");
-        client.showCreateResult(result, myuserDTO2);
-          
+        
+        System.out.println("Welcome to the database");
+        while (true) {
+            System.out.println("1. Check current record\n" +
+                                "2. Create a record\n" +
+                                "3. Update a user\n" +
+                                "4. Delete a record\n" +
+                                "5. Exit");
+            Scanner myObj = new Scanner(System.in);
+            int userOption = Integer.parseInt(myObj.nextLine());
+
+            if (userOption == 1) {
+                Scanner myObj2 = new Scanner(System.in);
+                System.out.println("Enter User ID");
+                String userID = myObj2.nextLine();
+                
+                MyuserDTO user = client.getRecord(userID);
+                System.out.println("Name: " + user.getName() + "\n" +
+                                    "Password: " + user.getPassword() + "\n" +
+                                    "Email: " + user.getEmail() + "\n" +
+                                    "Phone: " + user.getPhone() + "\n" +
+                                    "Address: " + user.getAddress() + "\n" +
+                                    "SecQn: " + user.getSecQn() + "\n" +
+                                    "SecAns: " + user.getSecAns() + "\n"
+                                    );
+
+            } else if (userOption == 2) {
+                Scanner s = new Scanner(System.in);
+
+                System.out.println("Enter UserID");
+                String userID = s.nextLine();
+
+                System.out.println("Name: ");
+                String name = s.nextLine();
+
+                System.out.println("Password: ");
+                String password = s.nextLine();
+
+                System.out.println("Email: ");
+                String email = s.nextLine();
+
+                System.out.println("Phone: ");
+                String phone = s.nextLine();
+
+                System.out.println("Address: ");
+                String address = s.nextLine();
+
+                System.out.println("Secqn:");
+                String secqn = s.nextLine();
+
+                System.out.println("Secans:");
+                String secans = s.nextLine();
+
+                MyuserDTO newUser = new MyuserDTO(userID, name, password, email, phone, address, secqn, secans);
+                client.createRecord(newUser);
+            } else if (userOption == 3) {
+                Scanner s = new Scanner(System.in);
+
+                System.out.println("Enter UserID to Update");
+                String userID = s.nextLine();
+
+                System.out.println("Name: ");
+                String name = s.nextLine();
+
+                System.out.println("Password: ");
+                String password = s.nextLine();
+
+                System.out.println("Email: ");
+                String email = s.nextLine();
+
+                System.out.println("Phone: ");
+                String phone = s.nextLine();
+
+                System.out.println("Address: ");
+                String address = s.nextLine();
+
+                System.out.println("Secqn:");
+                String secqn = s.nextLine();
+
+                System.out.println("Secans:");
+                String secans = s.nextLine();
+
+                MyuserDTO updatedUser = new MyuserDTO(userID, name, password, email, phone, address, secqn, secans);
+                client.updateRecord(updatedUser);
+            } else if (userOption == 4) {
+
+                Scanner s = new Scanner(System.in);
+                System.out.println("Enter UserID to Delete");
+                String userID = s.nextLine();
+                client.deleteRecord(userID);
+
+            } else if (userOption == 5) {
+                System.exit(1);
+            } else {
+                System.out.println("Invalid Selection");
+            }
+        }
+                  
     }
     public void showCreateResult(boolean result, MyuserDTO myuserDTO) {
         if (result) {
@@ -36,8 +122,8 @@ public class MyuserApp {
         return mydb.createRecord(myuserDTO);
     }
     
-    public MyuserDTO getRecord(MyuserDTO myuserDTO) {
-        return mydb.getRecord(myuserDTO.getUserid());
+    public MyuserDTO getRecord(String userId) {
+        return mydb.getRecord(userId);
     }
     
     public boolean updateRecord(MyuserDTO myuserDTO) {
