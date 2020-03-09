@@ -51,7 +51,7 @@
       <Position>8</Position>
       <DataType>CHAR(60)|1s</DataType>
     </column>
-    <index id="22" parent="13" name="SQL200304201054300">
+    <index id="22" parent="13" name="SQL200304201946130">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERID</ColNames>
       <Unique>1</Unique>
