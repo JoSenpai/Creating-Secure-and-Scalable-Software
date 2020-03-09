@@ -160,6 +160,7 @@ public class MyDB {
             ex.printStackTrace();
             return false;
         } finally  {
+            System.out.println("User Created");
             return true;
         }
     }
@@ -235,6 +236,32 @@ public class MyDB {
                 System.out.println("User Id:" + myuser.getUserid() + " has been updated");
                 return true;
             }
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteRecord(String userId) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        try {
+            cnnct = getConnection();
+            String sql
+                    = "DELETE FROM MYUSER WHERE USERID=(?)";
+
+            pStmnt = cnnct.prepareStatement(sql);
+            pStmnt.setString(1, userId);
+
+            pStmnt.executeUpdate();
+            System.out.println("Record deleted successfully");
+            return true;
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();

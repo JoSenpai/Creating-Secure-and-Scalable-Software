@@ -8,75 +8,102 @@ public class SetUpUser {
     public static void main(String[] args) {
         MyDB mydb = new MyDB();
 
-//        System.out.println("Welcome to the database");
-//        while (true) {
-//            System.out.println("1. Check current record\n" +
-//                                "2. Update a user\n" +
-//                                "3. Exit");
-//            Scanner myObj = new Scanner(System.in);
-//            int userOption = Integer.parseInt(myObj.nextLine());
-//
-//            if (userOption == 1) {
-//                Scanner myObj2 = new Scanner(System.in);
-//                System.out.println("Enter User ID");
-//                String userID = myObj2.nextLine();
-//                Myuser user = mydb.getRecord(userID);
-//                System.out.println("Name: " + user.getName() + "\n" +
-//                                    "Password: " + user.getPassword() + "\n" +
-//                                    "Email: " + user.getEmail() + "\n" +
-//                                    "Phone: " + user.getPhone() + "\n" +
-//                                    "Address: " + user.getAddress() + "\n" +
-//                                    "SecQn: " + user.getSecQn() + "\n" +
-//                                    "SecAns: " + user.getSecAns() + "\n"
-//                                    );
-//
-//            } else if (userOption == 2) {
-//                Scanner s = new Scanner(System.in);
-//
-//                System.out.println("Enter UserID to Update");
-//                String userID = s.nextLine();
-//
-//                System.out.println("Name: ");
-//                String name = s.nextLine();
-//
-//                System.out.println("Password: ");
-//                String password = s.nextLine();
-//
-//                System.out.println("Email: ");
-//                String email = s.nextLine();
-//
-//                System.out.println("Phone: ");
-//                String phone = s.nextLine();
-//
-//                System.out.println("Address: ");
-//                String address = s.nextLine();
-//
-//                System.out.println("Secqn:");
-//                String secqn = s.nextLine();
-//
-//                System.out.println("Secans:");
-//                String secans = s.nextLine();
-//
-//                Myuser updatedUser = new Myuser(userID, name, password, email, phone, address, secqn, secans);
-//                mydb.updateRecord(updatedUser);
-//            } else if (userOption == 3) {
-//                System.exit(1);
-//            } else {
-//                System.out.println("Invalid Selection");
-//            }
-//        }
+        System.out.println("Welcome to the database");
+        while (true) {
+            System.out.println("1. Check current record\n" +
+                                "2. Create a record\n" +
+                                "3. Update a user\n" +
+                                "4. Delete a record\n" +
+                                "5. Exit");
+            Scanner myObj = new Scanner(System.in);
+            int userOption = Integer.parseInt(myObj.nextLine());
 
+            if (userOption == 1) {
+                Scanner myObj2 = new Scanner(System.in);
+                System.out.println("Enter User ID");
+                String userID = myObj2.nextLine();
+                Myuser user = mydb.getRecord(userID);
+                System.out.println("Name: " + user.getName() + "\n" +
+                                    "Password: " + user.getPassword() + "\n" +
+                                    "Email: " + user.getEmail() + "\n" +
+                                    "Phone: " + user.getPhone() + "\n" +
+                                    "Address: " + user.getAddress() + "\n" +
+                                    "SecQn: " + user.getSecQn() + "\n" +
+                                    "SecAns: " + user.getSecAns() + "\n"
+                                    );
 
+            } else if (userOption == 2) {
+                Scanner s = new Scanner(System.in);
 
-//        Myuser newUser = new Myuser("000001", "Jonathan",
-//                "pass", "my email", "12345",
-//                "Swinburne", "Helloo","Byee");
-//        mydb.updateRecord(newUser);
+                System.out.println("Enter UserID");
+                String userID = s.nextLine();
 
-        mydb.dropMyuserTable();
-        mydb.createMyuserTable();
-        ArrayList<Myuser> aList = prepareMyuserData();
-        mydb.addRecords(aList);
+                System.out.println("Name: ");
+                String name = s.nextLine();
+
+                System.out.println("Password: ");
+                String password = s.nextLine();
+
+                System.out.println("Email: ");
+                String email = s.nextLine();
+
+                System.out.println("Phone: ");
+                String phone = s.nextLine();
+
+                System.out.println("Address: ");
+                String address = s.nextLine();
+
+                System.out.println("Secqn:");
+                String secqn = s.nextLine();
+
+                System.out.println("Secans:");
+                String secans = s.nextLine();
+
+                Myuser newUser = new Myuser(userID, name, password, email, phone, address, secqn, secans);
+                mydb.createRecord(newUser);
+            } else if (userOption == 3) {
+                Scanner s = new Scanner(System.in);
+
+                System.out.println("Enter UserID to Update");
+                String userID = s.nextLine();
+
+                System.out.println("Name: ");
+                String name = s.nextLine();
+
+                System.out.println("Password: ");
+                String password = s.nextLine();
+
+                System.out.println("Email: ");
+                String email = s.nextLine();
+
+                System.out.println("Phone: ");
+                String phone = s.nextLine();
+
+                System.out.println("Address: ");
+                String address = s.nextLine();
+
+                System.out.println("Secqn:");
+                String secqn = s.nextLine();
+
+                System.out.println("Secans:");
+                String secans = s.nextLine();
+
+                Myuser updatedUser = new Myuser(userID, name, password, email, phone, address, secqn, secans);
+                mydb.updateRecord(updatedUser);
+            } else if (userOption == 4) {
+
+                Scanner s = new Scanner(System.in);
+                System.out.println("Enter UserID to Delete");
+                String userID = s.nextLine();
+                mydb.deleteRecord(userID);
+
+            } else if (userOption == 5) {
+                System.exit(1);
+            } else {
+                System.out.println("Invalid Selection");
+            }
+        }
+
     }
 
     public static ArrayList<Myuser> prepareMyuserData() { ArrayList<Myuser> myList = new ArrayList<Myuser>();
