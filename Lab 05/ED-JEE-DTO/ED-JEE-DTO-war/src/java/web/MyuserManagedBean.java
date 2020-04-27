@@ -8,6 +8,11 @@ package web;
 import entity.MyuserDTO;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import session.MyuserFacadeRemote;
 
@@ -163,6 +168,7 @@ public class MyuserManagedBean {
 * and password the same as cPassword (case sensitive)
 * before calling the façade’s createRecord() method */
 
+        System.out.println("Add User Password: " + password);
         if (isValidUserid(userid) && isValidName(name)
         && isValidPassword(password) && isValidPassword(cPassword)
         && isValidEmail(email) && isValidPhone(phone)
@@ -182,10 +188,11 @@ public class MyuserManagedBean {
      */
     public String updateUser() {
         String result = "failure";
-        /*
-* are all data entered valid?
-* and password the same as cPassword (case sensitive)
-* before calling the façade’s createRecord() method */
+
+        boolean passwordsMatch = validatePasswordCorrect();
+        if (!passwordsMatch) {
+            return result;
+        }
 
         if (isValidUserid(userid) && isValidName(name)
         && isValidPassword(password) && isValidPassword(cPassword)
@@ -202,6 +209,19 @@ public class MyuserManagedBean {
 
         if ("success".equals(result)) {
             JavaMailUtil.sendMail(getOldEmail());
+        }
+        return result;
+    }
+
+    public boolean validatePasswordCorrect() {
+
+        boolean result = false;
+
+        if (isValidPassword(password)) {
+            if (password.equals(cPassword)) {
+                System.out.println("Passwords do not match");
+                result = true;
+            }
         }
         return result;
     }
@@ -239,6 +259,27 @@ public class MyuserManagedBean {
 
     public boolean isValidSecAns(String secAns) {
         return (secAns != null);
+    }
+
+    public void validatePasswordCorrect(FacesContext context, UIComponent component,
+    Object value) {
+
+        // Retrieve the value passed to this method
+        String confirmPassword = (String) value;
+
+        // Retrieve the temporary value from the password field
+        UIInput passwordInput = (UIInput) component.findComponent("password");
+        String password = (String) passwordInput.getLocalValue();
+
+        System.out.println("Password input: " + password);
+
+        if (password == null || confirmPassword == null || !password.equals(confirmPassword)) {
+            String message = context.getApplication().evaluateExpressionGet(context, "#{msgs['nomatch']}", String.class);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match!", "Passwords do not match!");
+
+            System.out.println("PASSWORD NOT MATCHING");
+            throw new ValidatorException(msg);
+        }
     }
 
 }
